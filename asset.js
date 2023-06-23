@@ -43,6 +43,9 @@ function settext(elementId, value) {
 slider1 = document.getElementById("range1");
 slider2 = document.getElementById("range2");
 slider3 = document.getElementById("range3");
+slider4 = document.getElementById("range4");
+slider5 = document.getElementById("range5");
+
 
 function setSliderBackground(slider) {
   var value = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
@@ -71,7 +74,7 @@ function setupSlider(slider, targetId, prefix = "", suffix = "") {
       
     } else if (slider == slider2) {
       document.getElementById("span").textContent = slider.value * 12;
-    } else {
+    } else if (slider == slider3){
       document.getElementById("apr").textContent = slider.value + "%";
     }
 
@@ -83,12 +86,17 @@ window.onload = function () {
   setSliderBackground(slider1);
   setSliderBackground(slider2);
   setSliderBackground(slider3);
+  setSliderBackground(slider4);
+  setSliderBackground(slider5);
 };
 
 // Usage
 setupSlider(slider1, "borrowed_amount", "£");
 setupSlider(slider2, "loan_term");
 setupSlider(slider3, "Percentage", "", "%");
+setupSlider(slider4  , "car_price" , "£");
+setupSlider(slider5  , "deposit_price" , "£");
+
 
 function toggleTab(tabIndex) {
   const tabs = document.getElementsByClassName("tab");
@@ -110,7 +118,6 @@ function toggleTab(tabIndex) {
     var slider = document.querySelector("#range1");
     slider.min = "50";
     slider.max = "1000";
-    slider.step = "10";
     slider.value = "200";
 
     var value = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
@@ -258,7 +265,7 @@ function updateValue(limit, target, slider) {
   }
 
   // Add the "£" symbol to the left of the value
-  if (slider == "range1") {
+  if (slider == "range1" || slider == 'range4') {
     input.value = "£" + value;
     addCommasToValue(input);
   } 
