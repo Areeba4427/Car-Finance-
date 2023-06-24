@@ -46,7 +46,6 @@ slider3 = document.getElementById("range3");
 slider4 = document.getElementById("range4");
 slider5 = document.getElementById("range5");
 
-
 function setSliderBackground(slider) {
   var value = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
   slider.style.background =
@@ -69,12 +68,11 @@ function setupSlider(slider, targetId, prefix = "", suffix = "") {
     setValue(targetId, prefix + slider.value + suffix);
 
     if (slider == slider1) {
-        document.getElementById("borrow").textContent =
-          "£" + addCommasToValuetwo(slider.value);
-      
+      document.getElementById("borrow").textContent =
+        "£" + addCommasToValuetwo(slider.value);
     } else if (slider == slider2) {
       document.getElementById("span").textContent = slider.value * 12;
-    } else if (slider == slider3){
+    } else if (slider == slider3) {
       document.getElementById("apr").textContent = slider.value + "%";
     }
 
@@ -94,9 +92,8 @@ window.onload = function () {
 setupSlider(slider1, "borrowed_amount", "£");
 setupSlider(slider2, "loan_term");
 setupSlider(slider3, "Percentage", "", "%");
-setupSlider(slider4  , "car_price" , "£");
-setupSlider(slider5  , "deposit_price" , "£");
-
+setupSlider(slider4, "car_price", "£");
+setupSlider(slider5, "deposit_price", "£");
 
 function toggleTab(tabIndex) {
   const tabs = document.getElementsByClassName("tab");
@@ -136,9 +133,7 @@ function toggleTab(tabIndex) {
     settext("borrow", "£9,413.07");
     settext("month", "£200");
     settext("total_two", "£12,000");
-  } 
-  
-  else {
+  } else {
     flag = 0;
     // Update the label text and slider properties
     settext("a_b", "Amount Borrowed");
@@ -231,9 +226,8 @@ function calculate() {
   }
 
   settext("repayment", "£" + result);
-  if(flag == 1){
-    settext("borrow" , "£" + result);
-  
+  if (flag == 1) {
+    settext("borrow", "£" + result);
   }
   if (flag == 0) {
     settext("month", "£" + result);
@@ -245,18 +239,16 @@ function calculate() {
   settext("interest", "£" + interest);
 }
 
-
-
 function updateValue(limit, target, slider) {
   // Get the input element and value
   var input = document.getElementById(target);
-  var value = input.value.replace(/,/g, '');
+  var value = input.value.replace(/,/g, "");
+
   // Check if the first character is "£" and remove it if present
   if (value.charAt(0) === "£") {
     input.value = value.slice(1);
     value = parseFloat(input.value);
   }
-  console.log(input.value  , value);
 
   // Limit the value to a maximum of 70000
   if (value > limit) {
@@ -265,13 +257,24 @@ function updateValue(limit, target, slider) {
   }
 
   // Add the "£" symbol to the left of the value
-  if (slider == "range1" || slider == 'range4') {
+  if (slider == "range1" || slider == "range4") {
     input.value = "£" + value;
     addCommasToValue(input);
-  } 
-  else if (slider == "range3") {
-    input.value = value + "%";
+  } else if (slider === "range3") {
+    if (input.value.indexOf("%") !== -1) {
+      {
+        var lastIndex = input.value.lastIndexOf("%");
+        value = input.value.slice(0, lastIndex);
+      }
+    }
+
+    if (!value.endsWith("%")) {
+      input.value = value + "%";
+    } else {
+      input.value = value;
+    }
   }
+
   // Update the slider position
   var slider = document.getElementById(slider);
   slider.value = value;

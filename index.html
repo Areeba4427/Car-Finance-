@@ -8,6 +8,9 @@
     <link rel="icon"
         href="https://moneywisedoctor.com/wp-content/uploads/2023/04/cropped-MoneywiseDoctor-home-page-192x192.jpg"
         sizes="192x192" />
+        <script src="https://code.jquery.com/jquery-3.6.3.slim.min.js"
+        integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous"></script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
     <title>Car Finance Calculator</title>
@@ -44,7 +47,7 @@
                                         onkeypress="return n(event)" class="text-input dark w-input" maxlength="15"
                                         name="name" data-name="Name" id="borrowed_amount" type="text" value="£10,000" />
                                     <div id="wrapper">
-                                        <input type="range" value="10000" class="range" id="range1" min="1000"
+                                        <input type="range" value="10000" class="range" id="range1" min="0"
                                             max="1000000" step="1000" />
                                     </div>
                                 </div>
@@ -73,7 +76,7 @@
                                 <div class="calculator-inputs-grid input3">
                                     <div class="amount_div">
                                         <label class="white-field-label">Annual Percentage Rate (APR)</label>
-                                        <input oninput="updateValue(40 , 'Percentage' , 'range3')"
+                                        <input onchange="updateValue(40 , 'Percentage' , 'range3')"
                                             onkeypress="return n(event)" class="text-input dark w-input short-input" maxlength="15"
                                             name="name" data-name="Name" id="Percentage" type="text" value="10%" />
                                          <div id="wrapper">
@@ -96,8 +99,7 @@
                                     </div>
                                 </div>
                                 <p>
-                                    The longer the loan term, the less you pay each month - but
-                                    you will end up paying more interest.
+                                  Total price you need to puchase the car.
                                 </p>
                                 <hr class="grey-horizontal-line" />
                             </div>
