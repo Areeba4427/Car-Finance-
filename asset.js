@@ -111,11 +111,12 @@ function toggleTab(tabIndex) {
     // Update the label text and slider properties
     settext("a_b", "Monthly Payment");
 
-    document.getElementById("borrowed_amount").value = "£" + 200;
+    document.getElementById("borrowed_amount").value = "£" + 700;
     var slider = document.querySelector("#range1");
-    slider.min = "50";
-    slider.max = "1000";
-    slider.value = "200";
+    slider.min = "0";
+    slider.max = "10000";
+    slider.value = "700";
+    slider.step = '100';
 
     var value = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
     slider.style.background =
@@ -131,17 +132,17 @@ function toggleTab(tabIndex) {
     settext("interest", "£2,586.93");
     settext("step", "£10");
     settext("borrow", "£9,413.07");
-    settext("month", "£200");
+    settext("month", "£700");
     settext("total_two", "£12,000");
   } else {
     flag = 0;
     // Update the label text and slider properties
-    settext("a_b", "Amount Borrowed");
+    settext("a_b", "Loan Amount");
 
     document.getElementById("borrowed_amount").value = "£" + 10000;
     var slider = document.querySelector("#range1");
-    slider.min = "1000";
-    slider.max = "100000";
+    slider.min = "0";
+    slider.max = "1000000";
     slider.step = "1000";
     slider.value = "10000";
 
