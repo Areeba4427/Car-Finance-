@@ -76,9 +76,29 @@ function setupSlider(slider, targetId, prefix = "", suffix = "") {
       document.getElementById("apr").textContent = slider.value + "%";
     }
 
-    calculate();
+    // calculate();
+
   });
 }
+
+$('#subscribe').click(function(){     
+  document.getElementById("popup").style.display = 'none';
+  
+});
+
+
+$('#calculate').click(function(){
+  // Check if the popup has already been shown
+  if (!localStorage.getItem('popupShown2')) {
+    // Show the popup
+    document.getElementById("popup").style.display = 'block';
+    
+    // Set the flag in local storage to indicate the popup has been shown
+    localStorage.setItem('popupShown2', 'true');
+  }
+
+  calculate();
+});
 
 window.onload = function () {
   setSliderBackground(slider1);
@@ -287,5 +307,5 @@ function updateValue(limit, target, slider) {
     value +
     "%, #ccc 100%)";
 
-  calculate();
+  // calculate();
 }
